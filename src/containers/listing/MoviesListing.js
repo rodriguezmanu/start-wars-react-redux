@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getMovies } from '../../actions/movies.actions';
 
 class App extends Component {
@@ -16,15 +16,17 @@ class App extends Component {
     getMovies();
   }
 
+  // getIdFromUrl = url => url.replace(/\D/g, '');
+
   render() {
     const { movies } = this.props;
 
     return (
       <div className="App">
         {!movies.isFetching &&
-          movies.data && (
+          movies.payload && (
             <div className="App-header">
-              {movies.data.results.map(item => (
+              {movies.payload.results.map(item => (
                 <div key={item.episode_id}>
                   <li>
                     <p>
@@ -41,9 +43,9 @@ class App extends Component {
                     </p>
                   </li>
                   <div>
-                    <NavLink className="btn btn-primary" to={`/${item.episode_id}`}>
-                      go to movie
-                    </NavLink>
+                    <Link className="btn btn-primary" to={`/${item.episode_id}`}>
+                      Go to Details
+                    </Link>
                   </div>
                   <hr />
                 </div>

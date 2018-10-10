@@ -1,3 +1,4 @@
+import { RSAA } from 'redux-api-middleware';
 import {
   GET_MOVIES_SUCCESS,
   GET_MOVIES_REQUEST,
@@ -7,13 +8,12 @@ import {
   GET_EPISODE_FAILURE,
 } from '../constants/actionTypes';
 import { API } from '../constants/endpoints';
-import { CALL_API } from '../constants/variables';
 
 /**
  * GetMovies API handler
  */
 export const getMovies = () => ({
-  [CALL_API]: {
+  [RSAA]: {
     method: 'get',
     types: [GET_MOVIES_REQUEST, GET_MOVIES_SUCCESS, GET_MOVIES_FAILURE],
     endpoint: `${API.URL + API.FILMS}`,
@@ -21,15 +21,52 @@ export const getMovies = () => ({
 });
 
 /**
+ * Build all url array and get data
+ * @param {Object} data
+ */
+const buildAllResponse = async data => {
+  try {
+    return await Promise.all(
+      data.map(request =>
+        fetch(request)
+          .then(response => response.json())
+          .then(data => data)
+      )
+    );
+  } catch (error) {
+    return null;
+  }
+};
+
+/**
  * Get Single Episode API handler
  *
  * @param {Number} id
  */
 export const getEpisode = id => ({
-  [CALL_API]: {
+  [RSAA]: {
     method: 'get',
-    payload: id,
     types: [GET_EPISODE_REQUEST, GET_EPISODE_SUCCESS, GET_EPISODE_FAILURE],
-    endpoint: `${API.URL + API.FILMS}`,
+    endpoint: `${API.URL + API.FILMS}/${id}`,
+    fetch: async (...args) => {
+      const res = await fetch(...args);
+      const json = await res.json();
+      const allSpecies = await buildAllResponse(json.species);
+      const allCharacters = await buildAllResponse(json.characters);
+
+      return new Response(
+        JSON.stringify({
+          ...json,
+          allSpecies,
+          allCharacters,
+        }),
+        {
+          status: json.error || !allSpecies || !allCharacters ? 500 : 200,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+    },
   },
 });

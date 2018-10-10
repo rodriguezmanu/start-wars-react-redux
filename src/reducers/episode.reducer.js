@@ -18,7 +18,7 @@ const episode = (state = initialState, action) => {
     case GET_EPISODE_SUCCESS:
       return {
         ...state,
-        data: action.data.results.filter(item => item.episode_id === Number(action.payload))[0],
+        payload: action.payload,
         isFetching: false,
       };
     case GET_EPISODE_FAILURE:

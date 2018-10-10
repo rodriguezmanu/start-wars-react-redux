@@ -18,7 +18,7 @@ const movies = (state = initialState, action) => {
     case GET_MOVIES_SUCCESS:
       return {
         ...state,
-        data: action.data,
+        payload: action.payload,
         isFetching: false,
       };
     case GET_MOVIES_FAILURE:

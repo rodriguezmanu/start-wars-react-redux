@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getEpisode } from '../../actions/movies.actions';
+import AllList from '../../components/all-list/AllList';
 
 class MovieDetails extends Component {
   static propTypes = {
@@ -22,32 +23,34 @@ class MovieDetails extends Component {
     return (
       <div>
         {!episode.isFetching &&
-          episode.data && (
+          episode.payload && (
             <div className="App-header">
               <p>
                 <b>Title: </b>
-                {episode.data.title}
+                {episode.payload.title}
               </p>
               <p>
                 <b>Episode: </b>
-                {episode.data.episode_id}
+                {episode.payload.episode_id}
               </p>
               <p>
                 <b>Crawl: </b>
-                {episode.data.opening_crawl}
+                {episode.payload.opening_crawl}
               </p>
               <p>
                 <b>Director: </b>
-                {episode.data.director}
+                {episode.payload.director}
               </p>
               <p>
                 <b>Producer: </b>
-                {episode.data.producer}
+                {episode.payload.producer}
               </p>
               <p>
                 <b>Release Date: </b>
-                {episode.data.release_date}
+                {episode.payload.release_date}
               </p>
+              <AllList title="Characters" data={episode.payload.allCharacters} />
+              <AllList title="Species" data={episode.payload.allSpecies} />
             </div>
           )}
       </div>
