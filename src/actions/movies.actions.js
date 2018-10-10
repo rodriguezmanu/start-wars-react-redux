@@ -6,6 +6,9 @@ import {
   GET_EPISODE_REQUEST,
   GET_EPISODE_SUCCESS,
   GET_EPISODE_FAILURE,
+  GET_CHARACTER_REQUEST,
+  GET_CHARACTER_SUCCESS,
+  GET_CHARACTER_FAILURE,
 } from '../constants/actionTypes';
 import { API } from '../constants/endpoints';
 
@@ -21,7 +24,21 @@ export const getMovies = () => ({
 });
 
 /**
+ * Get Character API handler
+ *
+ * @param {Number} id
+ */
+export const getCharacter = id => ({
+  [RSAA]: {
+    method: 'get',
+    types: [GET_CHARACTER_REQUEST, GET_CHARACTER_SUCCESS, GET_CHARACTER_FAILURE],
+    endpoint: `${API.URL + API.PEOPLE}/${id}`,
+  },
+});
+
+/**
  * Build all url array and get data
+ *
  * @param {Object} data
  */
 const buildAllResponse = async data => {
@@ -39,7 +56,7 @@ const buildAllResponse = async data => {
 };
 
 /**
- * Get Single Episode API handler
+ * Get Single Episode API handler custom response for all character and species
  *
  * @param {Number} id
  */

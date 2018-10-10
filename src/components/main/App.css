@@ -6,11 +6,10 @@
   float: left;
 }
 
-.App h1 {
+.App .logo h1 {
   color: #ffffff;
   padding-right: 60px;
 }
-
 
 .App .ant-layout-content {
   margin: 50px;
