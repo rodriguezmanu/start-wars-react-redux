@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
 import { BrowserRouter as Router, Switch, Route, NavLink, Redirect } from 'react-router-dom';
-import MovieDetails from '../../containers/details/MovieDetails';
+import MovieDetails from '../../containers/movie/details/MovieDetails';
 import Character from '../../containers/character/Characters';
 
 import Home from '../home/Home';

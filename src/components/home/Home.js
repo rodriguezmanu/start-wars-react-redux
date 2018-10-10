@@ -1,5 +1,5 @@
 import React from 'react';
-import MoviesListing from '../../containers/listing/MoviesListing';
+import MoviesListing from '../../containers/movie/listing/MoviesListing';
 
 const Home = () => (
   <React.Fragment>

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Spin, Alert } from 'antd';
-import { getEpisode } from '../../actions/movies.actions';
-import AllList from '../../components/all-list/AllList';
-import ItemList from '../../components/item-list/ItemList';
+import { getEpisode } from '../../../actions/movies.actions';
+import AllList from '../../../components/all-list/AllList';
+import ItemList from '../../../components/item-list/ItemList';
 
 class MovieDetails extends Component {
   static propTypes = {

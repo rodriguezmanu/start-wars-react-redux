@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Table, Button, Spin, Alert } from 'antd';
-import { getMovies } from '../../actions/movies.actions';
+import { getMovies } from '../../../actions/movies.actions';
 
 class MoviesListing extends Component {
   state = {
