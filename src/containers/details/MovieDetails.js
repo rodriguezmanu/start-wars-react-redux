@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Spin, Alert } from 'antd';
 import { getEpisode } from '../../actions/movies.actions';
 import AllList from '../../components/all-list/AllList';
 
@@ -24,7 +25,7 @@ class MovieDetails extends Component {
       <div>
         {!episode.isFetching &&
           episode.payload && (
-            <div className="App-header">
+            <div>
               <p>
                 <b>Title: </b>
                 {episode.payload.title}
@@ -52,6 +53,16 @@ class MovieDetails extends Component {
               <AllList title="Characters" data={episode.payload.allCharacters} />
               <AllList title="Species" data={episode.payload.allSpecies} />
             </div>
+          )}
+        {episode.isFetching && <Spin size="large" />}
+        {!episode.isFetching &&
+          episode.error && (
+            <Alert
+              message="Error"
+              description="Something was wrong with API, please Try again"
+              type="error"
+              showIcon
+            />
           )}
       </div>
     );

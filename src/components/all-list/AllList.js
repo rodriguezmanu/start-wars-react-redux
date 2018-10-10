@@ -14,7 +14,7 @@ const AllList = ({ title, data }) => (
 
 AllList.propTypes = {
   title: PropTypes.string.isRequired,
-  data: PropTypes.shape({}).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default AllList;

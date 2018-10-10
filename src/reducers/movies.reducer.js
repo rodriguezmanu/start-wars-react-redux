@@ -24,7 +24,6 @@ const movies = (state = initialState, action) => {
     case GET_MOVIES_FAILURE:
       return {
         ...state,
-        errors: action.errors,
         isFetching: false,
       };
     default:

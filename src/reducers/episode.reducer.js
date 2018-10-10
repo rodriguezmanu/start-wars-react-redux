@@ -24,7 +24,6 @@ const episode = (state = initialState, action) => {
     case GET_EPISODE_FAILURE:
       return {
         ...state,
-        errors: action.errors,
         isFetching: false,
       };
     default:
