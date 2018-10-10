@@ -14,4 +14,4 @@
 
 ## URL
 
-[https://star-wars-react.herokuapp.com/ ](https://star-wars-react.herokuapp.com/ /)
+[https://star-wars-react.herokuapp.com/](https://star-wars-react.herokuapp.com/ /)
