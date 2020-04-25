@@ -1,5 +1,5 @@
 export const API = {
-  URL: 'https://swapi.co/api/',
+  URL: 'https://swapi.dev/api/',
   FILMS: 'films',
   PEOPLE: 'people',
 };
